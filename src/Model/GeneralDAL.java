@@ -1,26 +1,23 @@
 package Model;
 import java.sql.*;
-import Common.Constant;
+import Common.Constants;
 
 public class GeneralDAL {
     Connection con;
     public GeneralDAL(){
-        try {
-            Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection(Constant.dbServer + Constant.dbName,Constant.dbUsername, Constant.dbPassword);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println(e.getClass().getName()+": "+e.getMessage());
-            System.exit(0);
+        try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            con = DriverManager.getConnection(Constants.dbServer + Constants.dbName, Constants.dbUsername, Constants.dbPassword);
         }
-        System.out.println("Opened database successfully");
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public ResultSet runQuery(String sql){
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(sql);
-            con.close();
             return result;
         } catch(SQLException ex) {
             ex.printStackTrace();

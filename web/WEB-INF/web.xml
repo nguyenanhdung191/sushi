@@ -5,7 +5,7 @@
          version="3.1">
     <servlet>
         <servlet-name>Menu</servlet-name>
-        <servlet-class>Menu</servlet-class>
+        <servlet-class>Controller.Menu</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Menu</servlet-name>
