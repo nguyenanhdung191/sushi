@@ -5,6 +5,15 @@ public class Product {
     String productName;
     int productPrice;
     String productImageUrl;
+    String productDescription;
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
 
     public String getProductImageUrl() {
         return productImageUrl;

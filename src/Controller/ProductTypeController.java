@@ -9,34 +9,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-@WebServlet(name = "ProductController")
-public class ProductController extends HttpServlet {
+
+@WebServlet(name = "ProductTypeController")
+public class ProductTypeController extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String action = request.getParameter("action");
-        if(action.equals("viewAll")){
-            out.println(viewAllProduct());
+        if(action.equals("getAll")){
+            out.println(getAllProductType());
         }
     }
 
-    protected String viewAllProduct() {
-        String json = "{\"products\": [";
-        ProductDAL pd = new ProductDAL();
-        ArrayList<Product> list = pd.getAllProduct();
+    protected String getAllProductType() {
+        String json = "{\"producttypes\": [";
+        ProductTypeDAL pd = new ProductTypeDAL();
+        ArrayList<ProductType> list = pd.getAllProductType();
         for (int i = 0; i < list.size(); i++) {
-            Product p = list.get(i);
+            ProductType pt = list.get(i);
             json += "{";
-            json += "\"id\": \"" + p.getProductID() + "\",";
-            json += "\"name\": \"" + p.getProductName() + "\",";
-            json += "\"price\": \"" + p.getProductPrice() + "\",";
-            json += "\"imageUrl\": \"" + p.getProductImageUrl() + "\",";
-            json += "\"description\": \"" + p.getProductDescription() + "\"";
+            json += "\"id\": \"" + pt.getProductTypeID() + "\",";
+            json += "\"name\": \"" + pt.getProductTypeName() + "\",";
+            json += "\"description\": \"" + pt.getProductTypeDescription() + "\"";
             json += "}";
             if (i < (list.size() - 1)) {
                 json += ",";

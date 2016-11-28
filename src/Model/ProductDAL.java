@@ -20,6 +20,7 @@ public class ProductDAL extends GeneralDAL {
                 p.setProductName(result.getString(2));
                 p.setProductPrice(result.getInt(3));
                 p.setProductImageUrl(result.getString(4));
+                p.setProductDescription(result.getString(5));
                 list.add(p);
             }
         } catch (SQLException e) {
