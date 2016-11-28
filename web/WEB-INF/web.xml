@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <servlet>
-        <servlet-name>Menu</servlet-name>
-        <servlet-class>Controller.Menu</servlet-class>
+        <servlet-name>ProductController</servlet-name>
+        <servlet-class>Controller.ProductController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Menu</servlet-name>
-        <url-pattern>/Menu</url-pattern>
+        <servlet-name>ProductController</servlet-name>
+        <url-pattern>/product</url-pattern>
     </servlet-mapping>
 </web-app>

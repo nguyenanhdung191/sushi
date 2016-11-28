@@ -14,7 +14,7 @@ public class GeneralDAL {
         }
     }
 
-    public ResultSet runQuery(String sql){
+    protected ResultSet runQuery(String sql){
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(sql);
@@ -25,7 +25,7 @@ public class GeneralDAL {
         }
     }
 
-    public int runCRUD(String sql){
+    protected int runCRUD(String sql){
         try {
             Statement stmt = con.createStatement();
             int rowsAffected = stmt.executeUpdate(sql);
