@@ -6,6 +6,17 @@ public class Product {
     int productPrice;
     String productImageUrl;
     String productDescription;
+    int productTypeID;
+
+    public int getProductTypeID() {
+        return productTypeID;
+    }
+
+    public void setProductTypeID(int productTypeID) {
+        this.productTypeID = productTypeID;
+    }
+
+
 
     public String getProductDescription() {
         return productDescription;

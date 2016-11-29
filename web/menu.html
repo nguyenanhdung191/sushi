@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -25,20 +24,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">×</span>
-                <h2>Thêm sản phẩm</h2>
+                <span id="modalTitle">THÊM SẢN PHẨM</span>
             </div>
             <div class="modal-body">
-                <table>
+                <table class="form">
                     <tr>
-                        <td>Tên sản phẩm</td>
-                        <td><input id="inputProductName" type="text"/></td>
+                        <td style="width:50%">Tên sản phẩm</td>
+                        <td style="width:50%"><input id="inputProductName" type="text"/></td>
                     </tr>
                     <tr>
                         <td>Loại sản phẩm</td>
                         <td>
-                            <select id="inputProductTypeSelector">
-
-                            </select>
+                            <select id="inputProductTypeSelector"></select>
                         </td>
                     </tr>
                     <tr>
@@ -47,14 +44,21 @@
                     </tr>
                     <tr>
                         <td>Giá sản phẩm</td>
-                        <td><input id="inputProductType" type="text"/> VNĐ</td>
+                        <td><input id="inputProductPrice" type="number"/> VNĐ</td>
                     </tr>
                     <tr>
+
                         <td>Chọn hình</td>
                         <td><input id="inputProductImage" type="file" accept=".jpg, .png, .jpeg"/></td>
                     </tr>
                     <tr>
-                        <td><input type="button" onclick="upimage()" value="up" /></td>
+                        <td colspan="2"><span id="inputProductID" class="hideID"></span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="addButton" type="button" onclick="addMenuItem()" value="Lưu lại" />
+                            <input id="editButton" type="button" onclick="editProduct()" value="Lưu chỉnh sửa" />
+                        </td>
                     </tr>
                 </table>
             </div>

@@ -2,6 +2,7 @@ package Controller;
 
 import Model.*;
 
+import java.io.File;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +21,46 @@ public class ProductController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String action = request.getParameter("action");
-        if(action.equals("viewAll")){
+        if (action.equals("viewAll")) {
             out.println(viewAllProduct());
+        }
+        if (action.equals("addMenuItem")) {
+            Product p = new Product();
+            p.setProductName(request.getParameter("name"));
+            p.setProductDescription(request.getParameter("description"));
+            p.setProductPrice(Integer.parseInt(request.getParameter("price")));
+            p.setProductTypeID(Integer.parseInt(request.getParameter("typeID")));
+            p.setProductImageUrl(request.getParameter("imageUrl"));
+            ProductDAL pd = new ProductDAL();
+            pd.addProduct(p);
+        }
+        if (action.equals("removeProduct")) {
+            ProductDAL pd = new ProductDAL();
+            pd.removeProduct(request.getParameter("id"));
+            if(request.getParameter("imageUrl") == ""){
+                return;
+            }
+            try {
+                File file = new File(getServletContext().getRealPath("/") + "/img/product/" + request.getParameter("imageUrl"));
+                if (file.delete()) {
+                    System.out.println(file.getName() + " is deleted!");
+                } else {
+                    System.out.println("Delete operation is failed.");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if(action.equals("editProduct")){
+            Product p = new Product();
+            p.setProductName(request.getParameter("name"));
+            p.setProductDescription(request.getParameter("description"));
+            p.setProductPrice(Integer.parseInt(request.getParameter("price")));
+            p.setProductTypeID(Integer.parseInt(request.getParameter("typeID")));
+            p.setProductID(Integer.parseInt(request.getParameter("id")));
+            p.setProductImageUrl(request.getParameter("imageUrl"));
+            ProductDAL pd = new ProductDAL();
+            pd.editProduct(p);
         }
     }
 
@@ -36,7 +75,8 @@ public class ProductController extends HttpServlet {
             json += "\"name\": \"" + p.getProductName() + "\",";
             json += "\"price\": \"" + p.getProductPrice() + "\",";
             json += "\"imageUrl\": \"" + p.getProductImageUrl() + "\",";
-            json += "\"description\": \"" + p.getProductDescription() + "\"";
+            json += "\"description\": \"" + p.getProductDescription() + "\",";
+            json += "\"typeID\": \"" + p.getProductTypeID() + "\"";
             json += "}";
             if (i < (list.size() - 1)) {
                 json += ",";
