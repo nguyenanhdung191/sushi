@@ -15,6 +15,10 @@
         <servlet-name>ProductImageController</servlet-name>
         <servlet-class>Controller.ProductImageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderController</servlet-name>
+        <servlet-class>Controller.OrderController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/product</url-pattern>
@@ -26,5 +30,9 @@
     <servlet-mapping>
         <servlet-name>ProductImageController</servlet-name>
         <url-pattern>/productImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderController</servlet-name>
+        <url-pattern>/order</url-pattern>
     </servlet-mapping>
 </web-app>

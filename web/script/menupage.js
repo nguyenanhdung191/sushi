@@ -93,6 +93,7 @@ const showEditProductModal = (id,name,description,price,imageUrl,typeID) => {
     $("#inputProductPrice").val(price);
     $("#inputProductTypeSelector").val(typeID);
     $("#inputProductID").text(id);
+    $("#inputProductImage").val("");
     $("#modalTitle").text("SỬA SẢN PHẨM");
     $("#editButton").show();
     $("#addButton").hide();
@@ -184,3 +185,4 @@ const clear = () => {
     $("#inputProductImage").val("");
 };
 getAllProduct();
+
