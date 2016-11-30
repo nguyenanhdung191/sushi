@@ -37,7 +37,7 @@ public class ProductController extends HttpServlet {
         if (action.equals("removeProduct")) {
             ProductDAL pd = new ProductDAL();
             pd.removeProduct(request.getParameter("id"));
-            if(request.getParameter("imageUrl") == ""){
+            if (request.getParameter("imageUrl") == "") {
                 return;
             }
             try {
@@ -51,7 +51,7 @@ public class ProductController extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        if(action.equals("editProduct")){
+        if (action.equals("editProduct")) {
             Product p = new Product();
             p.setProductName(request.getParameter("name"));
             p.setProductDescription(request.getParameter("description"));

@@ -29,7 +29,24 @@ public class ProductDAL extends GeneralDAL {
         }
         return list;
     }
-
+    public Product getProductByID(int productID){
+        String query = "SELECT * FROM product WHERE ProductID = " + productID;
+        ResultSet result = runQuery(query);
+        Product p = new Product();
+        try {
+            while (result.next()) {
+                p.setProductID(result.getInt(1));
+                p.setProductName(result.getString(2));
+                p.setProductPrice(result.getInt(3));
+                p.setProductImageUrl(result.getString(4));
+                p.setProductDescription(result.getString(5));
+                p.setProductTypeID(result.getInt(6));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return p;
+    }
     public int addProduct(Product p) {
         String query = "INSERT INTO Product (productName, productPrice, productImageUrl, productDescription, productTypeID) ";
         query += "VALUES(N'" + p.getProductName() + "',";

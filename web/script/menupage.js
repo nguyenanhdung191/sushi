@@ -14,7 +14,7 @@ const addMenuItem = () => {
             contentType: false,
             processData: false,
             data: formData,
-            type: 'POST',
+            type: 'POST'
         })
     }
     let name = $("#inputProductName").val();
@@ -44,7 +44,7 @@ const removeProduct = (id, imageUrl) => {
             cache: false,
             contentType: false,
             processData: false,
-            type: 'GET',
+            type: 'GET'
         });
         alert("Xóa thực đơn thành công");
         getAllProduct();
@@ -69,7 +69,7 @@ const editProduct = () => {
             contentType: false,
             processData: false,
             data: formData,
-            type: 'POST',
+            type: 'POST'
         })
     }
     $.ajax({
@@ -78,7 +78,7 @@ const editProduct = () => {
         cache: false,
         contentType: false,
         processData: false,
-        type: 'GET',
+        type: 'GET'
     });
 
     alert("Sửa thành công");
@@ -97,29 +97,6 @@ const showEditProductModal = (id,name,description,price,imageUrl,typeID) => {
     $("#modalTitle").text("SỬA SẢN PHẨM");
     $("#editButton").show();
     $("#addButton").hide();
-};
-const getAllProduct = () => {
-    let HTML = "";
-    $("#menuList").html("");
-    $.get("product?action=viewAll", data => {
-        data.products.forEach(product => {
-            HTML += `<div class="menuItem">
-                        <div class="productImage"><img src="img/product/${product.imageUrl}" alt="Chưa có hình"/></div>
-                        <div class="productName">${product.name}</div>
-                        <div class="productDescription">${product.description}</div>
-                        <div class="productPrice">${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} VNĐ</div>
-                        <div class="productOperation">
-                            <img class="removeButton" onclick="removeProduct('${product.id}','${product.imageUrl}')" src="img/removeicon.png"/>
-                            <img class="editButton" onclick="showEditProductModal('${product.id}','${product.name}','${product.description}','${product.price}','${product.imageUrl}','${product.typeID}')" src="img/editicon.png"/>
-                        </div>
-                    </div>`;
-        });
-        HTML += `<div class="menuItem">
-                    <div class="addIconButton"><img id="addMenuItemButton" class="addButton" src="img/addicon.png"/></div>
-                 </div>`;
-        $("#menuList").html(HTML);
-        modal();
-    });
 };
 const modal = () => {
     var modal = document.getElementById('addMenuItem');
@@ -141,7 +118,7 @@ const modal = () => {
         if (event.target == modal) {
             modal.style.display = "none";
         }
-    }
+    };
     getAllProductType();
 };
 const getAllProductType = () => {
@@ -183,6 +160,29 @@ const clear = () => {
     $("#inputProductDescription").val("");
     $("#inputProductPrice").val("");
     $("#inputProductImage").val("");
+};
+const getAllProduct = () => {
+    let HTML = "";
+    $("#menuList").html("");
+    $.get("product?action=viewAll", data => {
+        data.products.forEach(product => {
+            HTML += `<div class="menuItem">
+                        <div class="productImage"><img src="img/product/${product.imageUrl}" alt="Chưa có hình"/></div>
+                        <div class="productName">${product.name}</div>
+                        <div class="productDescription">${product.description}</div>
+                        <div class="productPrice">${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} VNĐ</div>
+                        <div class="productOperation">
+                            <img class="removeButton" onclick="removeProduct('${product.id}','${product.imageUrl}')" src="img/removeicon.png"/>
+                            <img class="editButton" onclick="showEditProductModal('${product.id}','${product.name}','${product.description}','${product.price}','${product.imageUrl}','${product.typeID}')" src="img/editicon.png"/>
+                        </div>
+                    </div>`;
+        });
+        HTML += `<div class="menuItem">
+                    <div class="addIconButton"><img id="addMenuItemButton" class="addButton" src="img/addicon.png"/></div>
+                 </div>`;
+        $("#menuList").html(HTML);
+        modal();
+    });
 };
 getAllProduct();
 

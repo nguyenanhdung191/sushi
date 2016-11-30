@@ -24,6 +24,10 @@ public class OrderController extends HttpServlet {
         if (action.equals("getCurrentOrder")) {
             out.println(getCurrentOrder());
         }
+        if(action.equals("addOrderItem")){
+            int orderNo = Integer.parseInt(request.getParameter("orderNo"));
+            addOrderItem(orderNo);
+        }
 
 
     }
@@ -52,5 +56,9 @@ public class OrderController extends HttpServlet {
         }
         json += "]}";
         return json;
+    }
+    protected void addOrderItem(int orderNo){
+        OrderDAL od = new OrderDAL();
+        od.addOrderItem(orderNo);
     }
 }

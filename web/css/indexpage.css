@@ -18,10 +18,9 @@
     border-radius: 6px;
 }
 
-.stateChecking{
+.stateChecking {
     background-color: #fffca5;
-} 
-
+}
 
 .orderNo {
     font-weight: bold;
@@ -91,4 +90,13 @@
     height: 50%;
     width: auto;
     transform: scale(1.4);
+}
+
+.orderDetailList {
+    width: 100%;
+    text-align: center;
+}
+
+.header {
+    font-weight: bold;
 }
