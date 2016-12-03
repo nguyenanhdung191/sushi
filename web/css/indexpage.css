@@ -100,3 +100,22 @@
 .header {
     font-weight: bold;
 }
+
+.modalBodyLeft{
+    float:left;
+    width:30%;
+    height:380px;
+}
+.modalBodyRight{
+    float:left;
+    width:65%;
+}
+
+.modal-body{
+    overflow: scroll;
+    height:400px;
+}
+
+.modal-content{
+    width: 80% !important;
+}

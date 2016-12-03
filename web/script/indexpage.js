@@ -1,3 +1,4 @@
+let ps = [];
 const getCurrentOrder = () => {
     let HTML = "";
     $("#orderList").html("");
@@ -76,9 +77,9 @@ const getOrderDetail = (orderID) => {
         $("#orderDetailList").append(HTML);
     });
 };
-const addOrderItem = () =>{
+const addOrderItem = () => {
     let orderNo = prompt("Vui lòng nhập số bill");
-    if(orderNo != null){
+    if (orderNo != null) {
         $.ajax({
             async: false,
             url: `order?action=addOrderItem&orderNo=${orderNo}`,
@@ -105,6 +106,42 @@ const modal = () => {
         }
     };
 };
-getCurrentOrder();
+const getMenuTree = () => {
+    jQuery.ajaxSetup({async: false});
+    let child = 1;
+    let HTML = `<tr class="treegrid-1">
+                    <td>THỰC ĐƠN</td>
+                </tr>`;
+    $.get("product?action=viewAll", product => {
+        product.products.forEach(p => {
+            ps.push(p);
+        });
+    });
+    $.get("productType?action=getAll", productType => {
+        productType.producttypes.forEach(producttype => {
+            child += 1;
+            HTML += `<tr class="treegrid-${child} treegrid-parent-1">
+                        <td>${producttype.name}</td>
+                    </tr>`;
+            let parent = child;
+            ps.forEach(p => {
+                if (p.typeID == producttype.id) {
+                    child += 1;
+                    HTML += `<tr class="treegrid-${child} treegrid-parent-${parent}">
+                                <td><span draggable="true" class="menuTreeItem">${p.name}</span></td>
+                             </tr>`;
+                }
+            });
+        });
+    });
+    $("#menuTree").html(HTML);
+    $(".tree").treegrid();
+    $('.tree').treegrid('getRootNodes').treegrid('getChildNodes').treegrid('collapse');
+    jQuery.ajaxSetup({async: true});
+};
 
-g
+
+getCurrentOrder();
+getMenuTree();
+
+

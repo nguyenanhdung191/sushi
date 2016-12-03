@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="css/body.css"/>
     <link rel="stylesheet" href="css/indexpage.css"/>
     <link rel="stylesheet" href="css/modal.css"/>
+    <link rel="stylesheet" href="css/jquery.treegrid.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="script/dragdrop.js"></script>
+    <script src="script/jquery.treegrid.js"></script>
 </head>
 <body>
 <div class="nav">
@@ -28,11 +31,16 @@
                 <span>CHI TIẾT ORDER</span>
             </div>
             <div class="modal-body">
-                <table id="orderDetailList" class="orderDetailList"></table>
+                <div class="modalBodyLeft" id="menuTreeContainer">
+                    <table id="menuTree" class="tree">
+                    </table>
+                </div>
+                <div class="modalBodyRight">
+                    <table id="orderDetailList" class="orderDetailList"></table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 <script src="script/indexpage.js"></script>
 </html>
