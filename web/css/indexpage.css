@@ -119,3 +119,12 @@
 .modal-content{
     width: 80% !important;
 }
+
+.menuTreeItem{
+    text-decoration: none;
+    color:black;
+}
+
+.hidden{
+    display: none;
+}

@@ -1,4 +1,5 @@
 let ps = [];
+let currentOrderID;
 const getCurrentOrder = () => {
     let HTML = "";
     $("#orderList").html("");
@@ -55,6 +56,7 @@ const getCurrentOrder = () => {
     });
 };
 const getOrderDetail = (orderID) => {
+    currentOrderID = orderID;
     $("#orderDetail").show();
     $.get(`orderDetail?action=getOrderDetail&orderID=${orderID}`, data => {
         let HTML;
@@ -128,7 +130,7 @@ const getMenuTree = () => {
                 if (p.typeID == producttype.id) {
                     child += 1;
                     HTML += `<tr class="treegrid-${child} treegrid-parent-${parent}">
-                                <td><span draggable="true" class="menuTreeItem">${p.name}</span></td>
+                                <td><a id="p-${p.id}" class="menuTreeItem" ondblclick="addProductDetail(this.id)" href="#">${p.name}</a></td>
                              </tr>`;
                 }
             });
@@ -139,7 +141,18 @@ const getMenuTree = () => {
     $('.tree').treegrid('getRootNodes').treegrid('getChildNodes').treegrid('collapse');
     jQuery.ajaxSetup({async: true});
 };
-
+const addProductDetail = (id) => {
+    let productID = id.split("-")[1];
+        $.ajax({
+        async: false,
+        url: `orderDetail?action=addOrderDetail&orderID=${currentOrderID}&productID=${productID}&quantity=1`,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'GET'
+    });
+    getOrderDetail(currentOrderID);
+};
 
 getCurrentOrder();
 getMenuTree();

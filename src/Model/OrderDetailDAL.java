@@ -33,4 +33,12 @@ public class OrderDetailDAL extends GeneralDAL {
         }
         return list;
     }
+
+    public int addOrderDetail(OrderDetail od) {
+        String query = "INSERT INTO orderdetail (OrderID, ProductID, Quantity) ";
+        query += "VALUES (" + od.getOrderID() + ",";
+        query += od.getProductID() + ",";
+        query += od.getQuantity() + ")";
+        return runCRUD(query);
+    }
 }

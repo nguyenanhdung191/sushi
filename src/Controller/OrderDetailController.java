@@ -21,6 +21,14 @@ public class OrderDetailController extends HttpServlet {
         if (action.equals("getOrderDetail")) {
             out.println(getOrderDetail(Integer.parseInt(request.getParameter("orderID"))));
         }
+        if (action.equals("addOrderDetail")) {
+            OrderDetail od = new OrderDetail();
+            od.setOrderID(Integer.parseInt(request.getParameter("orderID")));
+            od.setProductID(Integer.parseInt(request.getParameter("productID")));
+            od.setQuantity(Integer.parseInt(request.getParameter("quantity")));
+            od.setNote(request.getParameter("note"));
+            addOrderDetail(od);
+        }
     }
 
     protected String getOrderDetail(int orderID) {
@@ -45,5 +53,8 @@ public class OrderDetailController extends HttpServlet {
         json += "]}";
         return json;
     }
+    protected void addOrderDetail(OrderDetail od){
+        OrderDetailDAL odd = new OrderDetailDAL();
+        odd.addOrderDetail(od);
+    }
 }
-
